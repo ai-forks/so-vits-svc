@@ -33,6 +33,7 @@ start_time = time.time()
 
 
 def main():
+    print(f"train==gpu={torch.cuda.is_available()}")
     """Assume Single Node Multi GPUs Training Only"""
     assert torch.cuda.is_available(), "CPU training is not allowed."
     hps = utils.get_hparams()

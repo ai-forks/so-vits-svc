@@ -154,6 +154,7 @@ def get_speech_encoder(speech_encoder,device=None,**kargs):
 
 def load_checkpoint(checkpoint_path, model, optimizer=None, skip_optimizer=False):
     assert os.path.isfile(checkpoint_path)
+    print(f"====load_checkpoint={checkpoint_path}")
     checkpoint_dict = torch.load(checkpoint_path, map_location='cpu')
     iteration = checkpoint_dict['iteration']
     learning_rate = checkpoint_dict['learning_rate']
