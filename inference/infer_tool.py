@@ -202,7 +202,7 @@ class Svc(object):
             self.net_g_ms.EnableCharacterMix(len(self.spk2id), self.dev)
 
     def get_unit_f0(self, wav, tran, cluster_infer_ratio, speaker, f0_filter ,f0_predictor,cr_threshold=0.05):
-
+        print(f"use unit_f0 == {speaker} ")
         if not hasattr(self,"f0_predictor_object") or self.f0_predictor_object is None or f0_predictor != self.f0_predictor_object.name:
             self.f0_predictor_object = utils.get_f0_predictor(f0_predictor,hop_length=self.hop_size,sampling_rate=self.target_sample,device=self.dev,threshold=cr_threshold)
         f0, uv = self.f0_predictor_object.compute_f0_uv(wav)
@@ -267,6 +267,7 @@ class Svc(object):
               second_encoding = False,
               loudness_envelope_adjustment = 1
               ):
+        print(f"use infer = {speaker} {raw_path}")
         torchaudio.set_audio_backend("soundfile")
         wav, sr = torchaudio.load(raw_path)
         if not hasattr(self,"audio_resample_transform") or self.audio16k_resample_transform.orig_freq != sr:
