@@ -123,7 +123,7 @@ def modelAnalysis(model_path,config_path,cluster_model_path,device,enhance,diff_
         for i in spks:
             msg += i + " "
         print(f"modelAnalysis choices={spks}")
-        return sid.update(choices = spks,value=spks[0]), msg
+        return sid.update(choices = [spks],value=spks[0]), msg
     except Exception as e:
         if debug:
             traceback.print_exc()
