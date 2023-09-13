@@ -315,7 +315,7 @@ with gr.Blocks(
                         """)
                     model_load_button = gr.Button(value="加载模型", variant="primary")
                     model_unload_button = gr.Button(value="卸载模型", variant="primary")
-                    sid = gr.Dropdown(label="音色（说话人）")
+                    sid = gr.Dropdown(choices=[], label="音色（说话人）")
                     sid_output = gr.Textbox(label="Output Message")
 
 
