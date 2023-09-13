@@ -304,7 +304,8 @@ with gr.Blocks(
                         with gr.TabItem('本地') as local_model_tab_local:
                             gr.Markdown(f'模型应当放置于{local_model_root}文件夹下')
                             local_model_refresh_btn = gr.Button('刷新本地模型列表')
-                            local_model_selection = gr.Dropdown(label='选择模型文件夹', choices=[], interactive=True)
+                            choices = scan_local_models()
+                            local_model_selection = gr.Dropdown(label='选择模型文件夹', choices=choices, interactive=True)
                     with gr.Row():
                         diff_model_path = gr.File(label="选择扩散模型文件")
                         diff_config_path = gr.File(label="选择扩散模型配置文件")
