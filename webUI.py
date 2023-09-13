@@ -89,7 +89,6 @@ def modelAnalysis(model_path,config_path,cluster_model_path,device,enhance,diff_
             # local path
             model_path = glob.glob(os.path.join(local_model_selection, '*.pth'))[0]
             config_path = glob.glob(os.path.join(local_model_selection, '*.json'))[0]
-            print(f"===>model_path={model_path} config_path={config_path}")
         else:
             # upload from webpage
             model_path = model_path.name
@@ -123,7 +122,6 @@ def modelAnalysis(model_path,config_path,cluster_model_path,device,enhance,diff_
         msg += "当前模型的可用音色：\n"
         for i in spks:
             msg += i + " "
-        print(f"modelAnalysis==={spks} {msg}")
         return sid.update(choices = spks,value=spks[0]), msg
     except Exception as e:
         if debug:
@@ -256,9 +254,7 @@ def model_compression(_model):
 
 def scan_local_models():
     res = []
-    print(f"local_model_root={os.path.join(local_model_root, '**', '*.json')}")
     candidates = glob.glob(os.path.join(local_model_root, '**', '*.json'), recursive=True)
-    print(f"candidates={candidates}")
     candidates = set([os.path.dirname(c) for c in candidates])
     for candidate in candidates:
         jsons = glob.glob(os.path.join(candidate, '*.json'))
@@ -266,8 +262,7 @@ def scan_local_models():
         if (len(jsons) == 1 and len(pths) == 1):
             # must contain exactly one json and one pth file
             res.append(candidate)
-    print(f"res={res}")
-
+    print(f"scan_local_models={res}")
     return res
 
 def local_model_refresh_fn():
@@ -305,8 +300,7 @@ with gr.Blocks(
                         with gr.TabItem('本地') as local_model_tab_local:
                             gr.Markdown(f'模型应当放置于{local_model_root}文件夹下')
                             local_model_refresh_btn = gr.Button('刷新本地模型列表')
-                            choices = scan_local_models()
-                            local_model_selection = gr.Dropdown(label='选择模型文件夹', choices=choices, interactive=True)
+                            local_model_selection = gr.Dropdown(label='选择模型文件夹', choices=scan_local_models(), interactive=True)
                     with gr.Row():
                         diff_model_path = gr.File(label="选择扩散模型文件")
                         diff_config_path = gr.File(label="选择扩散模型配置文件")
