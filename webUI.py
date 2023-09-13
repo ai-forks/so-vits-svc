@@ -254,7 +254,9 @@ def model_compression(_model):
 
 def scan_local_models():
     res = []
+    print(f"local_model_root={os.path.join(local_model_root, '**', '*.json')}")
     candidates = glob.glob(os.path.join(local_model_root, '**', '*.json'), recursive=True)
+    print(f"candidates={candidates}")
     candidates = set([os.path.dirname(c) for c in candidates])
     for candidate in candidates:
         jsons = glob.glob(os.path.join(candidate, '*.json'))
