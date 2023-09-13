@@ -1,6 +1,7 @@
 import logging
 
 import soundfile
+import os
 
 from inference import infer_tool
 from inference.infer_tool import Svc
@@ -13,7 +14,7 @@ chunks_dict = infer_tool.read_temp("inference/chunks_temp.json")
 
 def main():
     import argparse
-
+    os.system("echo PYTORCH_CUDA_ALLOC_CONF = $PYTORCH_CUDA_ALLOC_CONF")
     parser = argparse.ArgumentParser(description='sovits4 inference')
 
     # 一定要设置的部分
