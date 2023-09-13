@@ -122,7 +122,7 @@ def modelAnalysis(model_path,config_path,cluster_model_path,device,enhance,diff_
         msg += "当前模型的可用音色：\n"
         for i in spks:
             msg += i + " "
-        print(f"modelAnalysis choices={spks}")
+        print(f"modelAnalysis choices={spks} {model.spk2id.keys()}")
         return sid.update(choices = [spks],value=spks[0]), msg
     except Exception as e:
         if debug:
