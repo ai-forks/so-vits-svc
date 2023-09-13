@@ -89,6 +89,7 @@ def modelAnalysis(model_path,config_path,cluster_model_path,device,enhance,diff_
             # local path
             model_path = glob.glob(os.path.join(local_model_selection, '*.pth'))[0]
             config_path = glob.glob(os.path.join(local_model_selection, '*.json'))[0]
+            print(f"===>model_path={model_path} config_path={config_path}")
         else:
             # upload from webpage
             model_path = model_path.name
