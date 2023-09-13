@@ -265,7 +265,7 @@ def scan_local_models():
         if (len(jsons) == 1 and len(pths) == 1):
             # must contain exactly one json and one pth file
             res.append(candidate)
-    print(f"res={candidates}")
+    print(f"res={res}")
 
     return res
 
