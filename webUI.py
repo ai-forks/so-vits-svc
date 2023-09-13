@@ -236,6 +236,7 @@ def vc_fn2(_text, _lang, _gender, _rate, _volume, sid, output_format, vc_transfo
         input_audio = "tts.wav"
         #audio, _ = soundfile.read(input_audio)
         output_file_path = vc_infer(output_format, sid, input_audio, "tts", vc_transform, auto_f0, cluster_ratio, slice_db, noise_scale, pad_seconds, cl_num, lg_num, lgr_num, f0_predictor, enhancer_adaptive_key, cr_threshold, k_step, use_spk_mix, second_encoding, loudness_envelope_adjustment)
+        print(f"output_file_path={output_file_path}")
         os.remove("tts.wav")
         return "Success", output_file_path
     except Exception as e:
