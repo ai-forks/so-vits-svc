@@ -268,7 +268,7 @@ def scan_local_models():
 
 def local_model_refresh_fn():
     choices = scan_local_models()
-    return gr.Dropdown.update(choices=choices)
+    return gr.Dropdown.update(choices=[choices])
 
 def debug_change():
     global debug
