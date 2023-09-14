@@ -290,6 +290,7 @@ class Svc(object):
         c = c.to(self.dtype)
         f0 = f0.to(self.dtype)
         uv = uv.to(self.dtype)
+        
         with torch.no_grad():
             start = time.time()
             vol = None

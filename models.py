@@ -492,9 +492,9 @@ class SynthesizerTrn(nn.Module):
 
         return o, ids_slice, spec_mask, (z, z_p, m_p, logs_p, m_q, logs_q), pred_lf0, norm_lf0, lf0
 
-    @torch.eval()
     @torch.no_grad()
     def infer(self, c, f0, uv, g=None, noice_scale=0.35, seed=52468, predict_f0=False, vol = None):
+
         if c.device == torch.device("cuda"):
             torch.cuda.manual_seed_all(seed)
         else:
