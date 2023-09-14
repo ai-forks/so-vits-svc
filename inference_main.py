@@ -103,7 +103,6 @@ def main():
                     only_diffusion,
                     use_spk_mix,
                     args.feature_retrieval)
-    svc_model.eval()
 
     infer_tool.mkdir(["raw", "results"])
     
