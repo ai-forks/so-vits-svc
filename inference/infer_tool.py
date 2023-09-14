@@ -294,6 +294,7 @@ class Svc(object):
             start = time.time()
             vol = None
             if not self.only_diffusion:
+                torch.set_grad_enabled(False)
                 vol = self.volume_extractor.extract(torch.FloatTensor(wav).to(self.dev)[None,:])[None,:].to(self.dev) if self.vol_embedding else None
                 audio,f0 = self.net_g_ms.infer(c, f0=f0, g=sid, uv=uv, predict_f0=auto_predict_f0, noice_scale=noice_scale,vol=vol)
                 audio = audio[0,0].data.float()
