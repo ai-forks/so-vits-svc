@@ -7,7 +7,9 @@
 __pycache__/
 *.py[cod]
 *$py.class
-
+logs
+trained
+pretrain
 # C extensions
 *.so
 checkpoints/
