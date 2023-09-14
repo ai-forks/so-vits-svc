@@ -103,7 +103,8 @@ def main():
                     only_diffusion,
                     use_spk_mix,
                     args.feature_retrieval)
-    
+    svc_model.eval()
+
     infer_tool.mkdir(["raw", "results"])
     
     if len(spk_mix_map)<=1:
@@ -138,7 +139,6 @@ def main():
                 "second_encoding":second_encoding,
                 "loudness_envelope_adjustment":loudness_envelope_adjustment
             }
-            svc_model.eval()
             audio = svc_model.slice_inference(**kwarg)
             key = "auto" if auto_predict_f0 else f"{tran}key"
             cluster_name = "" if cluster_infer_ratio == 0 else f"_{cluster_infer_ratio}"
