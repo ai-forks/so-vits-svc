@@ -492,9 +492,9 @@ class SynthesizerTrn(nn.Module):
 
         return o, ids_slice, spec_mask, (z, z_p, m_p, logs_p, m_q, logs_q), pred_lf0, norm_lf0, lf0
 
+    @torch.eval()
     @torch.no_grad()
     def infer(self, c, f0, uv, g=None, noice_scale=0.35, seed=52468, predict_f0=False, vol = None):
-
         if c.device == torch.device("cuda"):
             torch.cuda.manual_seed_all(seed)
         else:
@@ -525,7 +525,7 @@ class SynthesizerTrn(nn.Module):
             norm_lf0 = utils.normalize_f0(lf0, x_mask, uv, random_scale=False)
             pred_lf0 = self.f0_decoder(x, norm_lf0, x_mask, spk_emb=g)
             f0 = (700 * (torch.pow(10, pred_lf0 * 500 / 2595) - 1)).squeeze(1)
-        torch.set_grad_enabled(False)
+        
         z_p, m_p, logs_p, c_mask = self.enc_p(x, x_mask, f0=f0_to_coarse(f0), noice_scale=noice_scale)
         z = self.flow(z_p, c_mask, g=g, reverse=True)
         o = self.dec(z * c_mask, g=g, f0=f0)
