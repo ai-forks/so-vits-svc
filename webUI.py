@@ -203,6 +203,7 @@ def vc_fn(sid, input_audio, output_format, vc_transform, auto_f0,cluster_ratio, 
         truncated_basename = Path(input_audio).stem[:-6]
         processed_audio = os.path.join("raw", f"{truncated_basename}.wav")
         soundfile.write(processed_audio, audio, sampling_rate, format="wav")
+        print("vc_fn 音频转换接口 input_audio={input_audio} truncated_basename={truncated_basename}")
         output_file = vc_infer(output_format, sid, processed_audio, truncated_basename, vc_transform, auto_f0, cluster_ratio, slice_db, noise_scale, pad_seconds, cl_num, lg_num, lgr_num, f0_predictor, enhancer_adaptive_key, cr_threshold, k_step, use_spk_mix, second_encoding, loudness_envelope_adjustment)
 
         return "Success", output_file
