@@ -258,6 +258,7 @@ def scan_local_models():
     res = []
     candidates = glob.glob(os.path.join(local_model_root, '**', '*.json'), recursive=True)
     candidates = set([os.path.dirname(c) for c in candidates])
+    print(f"candidates={candidates}")
     for candidate in candidates:
         jsons = glob.glob(os.path.join(candidate, '*.json'))
         pths = glob.glob(os.path.join(candidate, '*.pth'))
