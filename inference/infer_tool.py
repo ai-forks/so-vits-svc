@@ -388,7 +388,7 @@ class Svc(object):
         lg_size_c_l = (lg_size-lg_size_r)//2
         lg_size_c_r = lg_size-lg_size_r-lg_size_c_l
         lg = np.linspace(0,1,lg_size_r) if lg_size!=0 else 0
-
+        printf(f"slice_inference api wav_path={wav_path} chunks={chunks.keys()}")
         if use_spk_mix:
             assert len(self.spk2id) == len(spk)
             audio_length = 0
