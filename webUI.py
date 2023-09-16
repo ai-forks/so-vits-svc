@@ -262,7 +262,7 @@ def scan_local_models():
     for candidate in candidates:
         jsons = glob.glob(os.path.join(candidate, '*.json'))
         pths = glob.glob(os.path.join(candidate, '*.pth'))
-        if (len(jsons) == 1 and len(pths) == 1):
+        if (len(jsons) >= 1 and len(pths) >= 1):
             # must contain exactly one json and one pth file
             res.append(candidate)
     print(f"scan_local_models={res} {os.path.join(local_model_root, '**', '*.json')}")
